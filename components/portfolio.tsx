@@ -1,10 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { ChevronRight, Github, Linkedin, Mail, X, Code, Database, Gamepad2, Smartphone, Briefcase, Brain } from 'lucide-react'
+import { ChevronRight, Github, Linkedin, Mail, X, Code, Database, Gamepad2, Smartphone, Brain } from 'lucide-react'
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,6 +17,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import Image from 'next/image'
 
 const COMPANY_LINKS: { [key: string]: string } = {
   'Ericsson': 'https://www.ericsson.com',
@@ -128,7 +127,17 @@ export function PortfolioComponent() {
     }, 5000); // Change text every 5 seconds
 
     return () => clearInterval(interval);
-  }, []);  const [activeSection, setActiveSection] = useState('')
+  }, [textOptions.length]);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTypedText(fullText.substring(0, typedText.length + 1))
+    }, 30)
+
+    return () => clearInterval(timer)
+  }, [fullText, typedText])
+
+  const [activeSection, setActiveSection] = useState('')
   const [hoveredImage, setHoveredImage] = useState<string | null>(null);
   const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null);
 
@@ -138,14 +147,6 @@ export function PortfolioComponent() {
       document.documentElement.style.scrollBehavior = 'auto';
     };
   }, []);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTypedText(fullText.substring(0, typedText.length + 1))
-    }, 30)
-
-    return () => clearInterval(timer)
-  }, [typedText])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -491,10 +492,13 @@ export function PortfolioComponent() {
                                 setHoveredImage(null);
                               }}
                             >
-                              <img 
+                              <Image 
                                 src={screenshot} 
                                 alt={`${project.title} screenshot ${i + 1}`} 
                                 className="w-full h-auto rounded-lg transition-all duration-300 hover:opacity-90"
+                                layout="responsive"
+                                width={700}
+                                height={475}
                               />
                               {hoveredImage === screenshot && (
                                 <div 
@@ -504,10 +508,13 @@ export function PortfolioComponent() {
                                   onMouseEnter={() => setHoveredImage(screenshot)}
                                   onMouseLeave={() => setHoveredImage(null)}
                                 >
-                                  <img
+                                  <Image
                                     src={screenshot}
                                     alt={`${project.title} screenshot ${i + 1} (enlarged)`}
                                     className="max-h-[80vh] max-w-[80vw] object-contain"
+                                    layout="responsive"
+                                    width={700}
+                                    height={475}
                                   />
                                 </div>
                               )}
