@@ -150,7 +150,7 @@ export function PortfolioComponent() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['hero', 'about', 'what-i-do', 'experience', 'research', 'projects', 'skills', 'references', 'contact']
+      const sections = ['hero', 'about', 'what-i-do', 'experience', 'research', 'projects', 'skills', 'soft-skills', 'references', 'contact']
       const currentSection = sections.find(section => {
         const element = document.getElementById(section)
         if (element) {
@@ -600,31 +600,115 @@ export function PortfolioComponent() {
           </div>
         </section>
 
-        <section id="soft-skills" className="py-20 px-4 bg-gradient-to-b from-[#121212] to-[#1a1a1a]">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl font-bold mb-8">Soft Skills</h2>
-            <p className="font-light text-lg leading-relaxed tracking-wide text-gray-200 italic">
-              Equipped with a robust set of soft skills, including strong collaboration and teamwork abilities, critical thinking and problem-solving prowess, effective leadership and management capabilities, and a steadfast commitment to integrity and professionalism. These skills enable me to adapt quickly, communicate effectively, and drive successful outcomes in diverse and challenging environments.
-            </p>
-          </div>
-        </section>
-
-        <section id="references" className="py-20 px-4">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl font-bold mb-8">Professional References</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-[#1a1a1a] p-6 rounded-lg">
-                <h3 className="text-xl font-semibold mb-2">Adrian Iftene</h3>
-                <p className="mb-2">Professor, PhD, Faculty of Computer Science</p>
-                <p className="mb-2">"Alexandru Ioan Cuza" University of Iasi, Romania</p>
-                <p className="mb-1">Email: adiftene@info.uaic.ro</p>
-                <p>Phone: 004-0232-201091</p>
+        <section id="soft-skills" className="py-20 px-4">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-2xl font-bold mb-16 text-center">Soft Skills</h2>
+            <div className="hidden md:block relative w-[600px] h-[600px] mx-auto">
+              {/* Main circle with sections */}
+              <div className="absolute inset-0 rounded-full border-2 border-[#FF4500]/30">
+                {/* Circle sections */}
+                <div className="absolute w-full h-full">
+                  {[0, 72, 144, 216, 288].map((rotation, index) => (
+                    <div
+                      key={index}
+                      className="absolute w-full h-full"
+                      style={{ transform: `rotate(${rotation}deg)` }}
+                    >
+                      <div className="absolute left-1/2 top-0 h-full w-[2px] bg-[#FF4500]/30 transform -translate-x-1/2"></div>
+                    </div>
+                  ))}
+                </div>
+        
+                {/* Skills groups */}
+                {[
+                  {
+                    title: "Languages",
+                    skills: ["Turkish (Native)", "English (B2)"],
+                    rotation: 0,
+                    position: { top: '10%', left: '50%', transform: 'translate(-50%, -50%)' }
+                  },
+                  {
+                    title: "Collaboration & Teamwork",
+                    skills: ["Collaboration", "Teamwork", "Adaptability", "Empathy", "Active Listening", "Negotiation"],
+                    rotation: 72,
+                    position: { top: '40%', left: '95%', transform: 'translate(-50%, -50%)' }
+                  },
+                  {
+                    title: "Critical Thinking & Problem-solving",
+                    skills: ["Problem-solving", "Analytical Thinking", "Critical Thinking", "Decision-making"],
+                    rotation: 144,
+                    position: { top: '90%', left: '75%', transform: 'translate(-50%, -50%)' }
+                  },
+                  {
+                    title: "Leadership & Management",
+                    skills: ["Leadership", "Time Management", "Initiative", "Flexibility", "Resilience"],
+                    rotation: 216,
+                    position: { top: '90%', left: '25%', transform: 'translate(-50%, -50%)' }
+                  },
+                  {
+                    title: "Integrity & Professionalism",
+                    skills: ["Integrity", "Attention to Detail", "Multitasking", "Conflict Resolution", "Networking", "Self-Motivation"],
+                    rotation: 288,
+                    position: { top: '40%', left: '5%', transform: 'translate(-50%, -50%)' }
+                  }
+                ].map((category, index) => (
+                  <div
+                    key={index}
+                    className="absolute flex flex-col items-center justify-center text-center"
+                    style={category.position}
+                  >
+                    <h3 className="text-lg font-semibold mb-2">{category.title}</h3>
+                    <ul className="list-none space-y-1">
+                      {category.skills.map((skill, i) => (
+                        <li
+                          key={i}
+                          className="font-mono text-sm transition-all duration-300 hover:text-[#FF4500] hover:text-lg"
+                        >
+                          {skill}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
               </div>
-              <div className="bg-[#1a1a1a] p-6 rounded-lg">
-                <h3 className="text-xl font-semibold mb-2">Tacha Serif</h3>
-                <p className="mb-2">Professor, PhD, Faculty of Engineering</p>
-                <p className="mb-2">Computer Engineering Department, Yeditepe University, Istanbul, Turkey</p>
-                <p>Email: tserif@cse.yeditepe.edu.tr</p>
+            </div>
+        
+            {/* Two-column list for mobile */}
+            <div className="block md:hidden">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {[
+                  {
+                    title: "Languages",
+                    skills: ["Turkish (Native)", "English (B2)"]
+                  },
+                  {
+                    title: "Collaboration & Teamwork",
+                    skills: ["Collaboration", "Teamwork", "Adaptability", "Empathy", "Active Listening", "Negotiation"]
+                  },
+                  {
+                    title: "Critical Thinking & Problem-solving",
+                    skills: ["Problem-solving", "Analytical Thinking", "Critical Thinking", "Decision-making"]
+                  },
+                  {
+                    title: "Leadership & Management",
+                    skills: ["Leadership", "Time Management", "Initiative", "Flexibility", "Resilience"]
+                  },
+                  {
+                    title: "Integrity & Professionalism",
+                    skills: ["Integrity", "Attention to Detail", "Multitasking", "Conflict Resolution", "Networking", "Self-Motivation"]
+                  }
+                ].map((category, index) => (
+                    <div key={index} className="border-b border-white/10 pb-4 mb-4 last:border-b-0 last:pb-0 last:mb-0">
+                    <h3 className="text-lg font-semibold mb-2">{category.title}</h3>
+                    <ul className="list-none space-y-1">
+                      {category.skills.map((skill, i) => (
+                      <li key={i} className="font-mono text-sm transition-all duration-300 hover:text-[#FF4500] hover:text-lg">
+                        {skill}
+                      </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
