@@ -108,7 +108,7 @@ const projects = [
 export function PortfolioComponent() {
   const [typedText, setTypedText] = useState('')
   const textOptions = [
-    'Junior Software Engineer | Computer Science Graduate',
+    'Junior Computer Engineer | Computer Engineering Graduate',
     'Software Engineer | Full-Stack Developer | ML Enthusiast | Game Developer',
     'Software Developer working with modern tech stack',
     'Full-Stack Developer crafting web experiences with modern technologies',
