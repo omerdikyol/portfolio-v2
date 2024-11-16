@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { ChevronRight, GitlabIcon as GitHub, Linkedin, Mail, X, Code, Database, Gamepad2, Smartphone, Briefcase, Brain } from 'lucide-react'
+import { ChevronRight, Github, Linkedin, Mail, X, Code, Database, Gamepad2, Smartphone, Briefcase, Brain } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -20,16 +20,24 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 
+const COMPANY_LINKS: { [key: string]: string } = {
+  'Ericsson': 'https://www.ericsson.com',
+  'HAVELSAN AŞ': 'https://www.havelsan.com.tr',
+  'Wocopa': 'https://wocopa.com',
+  'Yeditepe University': 'https://www.yeditepe.edu.tr/en',
+  'Alexandru Ioan Cuza University': 'https://www.uaic.ro/en'
+}
+
 const projects = [
   {
     title: 'Enhanced Therapeutic Engagement',
     description: 'A Gamified Arduino Glove System for Hand Rehabilitation',
     tech: 'Unity Engine, Arduino, C#',
-    github: 'https://github.com/user/project1',
+    github: 'https://github.com/omerdikyol/gamified-hand-rehab',
     details: 'This project aims to improve hand rehabilitation through gamification. It uses an Arduino-equipped glove to track hand movements, which are then integrated into Unity-based games, making therapy more engaging and effective.',
     screenshots: [
-      '/placeholder.svg?height=300&width=400',
-      '/placeholder.svg?height=300&width=400',
+      '/screenshots/therapeutic-glove/therapeutic-glove1.png',
+      '/screenshots/therapeutic-glove/therapeutic-glove2.png',
     ]
   },
   {
@@ -39,68 +47,91 @@ const projects = [
     github: '#',
     details: 'YHT Conductor is a Python-based automation tool that streamlines the ticket reservation process for high-speed trains. It uses web scraping techniques to efficiently book tickets, saving time for users.',
     screenshots: [
-      '/placeholder.svg?height=300&width=400',
-    ]
-  },
-  {
-    title: 'Job Optimization Application',
-    description: 'Python-based application to optimize job scheduling in manufacturing',
-    tech: 'Python, PyQt, Simulated Annealing, Genetic Algorithms',
-    github: 'https://github.com/user/project3',
-    details: 'This application leverages advanced algorithms to optimize job scheduling in manufacturing environments. It uses PyQt for the user interface and implements both Simulated Annealing and Genetic Algorithms for efficient scheduling.',
-    screenshots: [
-      '/placeholder.svg?height=300&width=400',
-      '/placeholder.svg?height=300&width=400',
-    ]
-  },
-  {
-    title: 'MedConnect',
-    description: 'Backend for a medical appointment scheduling app',
-    tech: 'Node.js, TypeScript, Express, MongoDB',
-    github: 'https://github.com/user/project4',
-    details: 'MedConnect is a robust backend system for a medical appointment scheduling application. It provides secure API endpoints for managing appointments and patient data, built with modern technologies for scalability and performance.',
-    screenshots: [
-      '/placeholder.svg?height=300&width=400',
+      '/screenshots/yht-conductor/yht-conductor1.png',
     ]
   },
   {
     title: 'The Escapade Game',
     description: 'A captivating 3D puzzle game with intricate puzzles and minigames',
     tech: 'Unity Engine, C#',
-    github: 'https://github.com/user/escapade-game',
+    github: 'https://github.com/omerdikyol/the-escapade-game',
     details: 'The Escapade is a 3D puzzle game where players solve intricate puzzles and complete various minigames to advance through levels in a mysterious world. Developed using Unity Engine, the game features a low-poly art style that creates a visually unique experience. C# was used for scripting gameplay mechanics, and Unity\'s animation tools brought the world to life.',
     screenshots: [
-      '/placeholder.svg?height=300&width=400',
-      '/placeholder.svg?height=300&width=400',
+      '/screenshots/escapade-game/the-escapade1.png',
+      '/screenshots/escapade-game/the-escapade2.png',
+    ]
+  },
+  {
+    title: 'Job Optimization Application',
+    description: 'Python-based application to optimize job scheduling in manufacturing',
+    tech: 'Python, PyQt, Simulated Annealing, Genetic Algorithms',
+    github: 'https://github.com/omerdikyol/job_optimization',
+    details: 'This application leverages advanced algorithms to optimize job scheduling in manufacturing environments. It uses PyQt for the user interface and implements both Simulated Annealing and Genetic Algorithms for efficient scheduling.',
+    screenshots: [
+      '/screenshots/job-optimization/job-optimization1.png',
+      '/screenshots/job-optimization/job-optimization2.png',
+    ]
+  },
+  {
+    title: 'MedConnect',
+    description: 'Backend for a medical appointment scheduling app',
+    tech: 'Node.js, TypeScript, Express, MongoDB',
+    github: 'https://github.com/omerdikyol/MedConnect-Server',
+    details: 'MedConnect is a robust backend system for a medical appointment scheduling application. It provides secure API endpoints for managing appointments and patient data, built with modern technologies for scalability and performance.',
+    screenshots: [
     ]
   },
   {
     title: 'Obesity Visualizer',
     description: 'Python-based data visualization tool for obesity trends',
     tech: 'Python, Pandas, Matplotlib, Seaborn',
-    github: 'https://github.com/user/obesity-visualizer',
+    github: 'https://github.com/omerdikyol/obesity-visualizer',
     details: 'The Obesity Visualizer is a data visualization tool that provides insights into obesity trends across various demographics. It utilizes Pandas for data processing, and Matplotlib and Seaborn for creating detailed visualizations. Users can explore correlations between obesity and factors like age, income, and geographic location.',
     screenshots: [
-      '/placeholder.svg?height=300&width=400',
+      '/screenshots/obesity-visualizer/obesity-visualizer1.png',
+      '/screenshots/obesity-visualizer/obesity-visualizer2.png',
+      '/screenshots/obesity-visualizer/obesity-visualizer3.png',
     ]
   },
   {
     title: '2D Arkanoid Game',
     description: 'A modern take on the classic Arkanoid-style game',
     tech: 'Unity Engine, C#',
-    github: 'https://github.com/user/arkanoid-game',
+    github: 'https://github.com/omerdikyol/2D-Arkanoid-Game',
     details: 'This project is a modern take on the classic Arkanoid-style game, developed using Unity Engine. The game features dynamic gameplay mechanics and challenges that require players to break bricks using a paddle and ball. Developed in C#, it includes power-ups, multiple levels, and increasing difficulty. Unity\'s physics engine was leveraged to create realistic ball and paddle interactions.',
     screenshots: [
-      '/placeholder.svg?height=300&width=400',
-      '/placeholder.svg?height=300&width=400',
+      '/screenshots/arkanoid/arkanoid1.png',
+      '/screenshots/arkanoid/arkanoid2.png',
     ]
   },
 ]
 
 export function PortfolioComponent() {
   const [typedText, setTypedText] = useState('')
-  const fullText = 'Python | Java | JavaScript | React | Node.js | Machine Learning'
-  const [activeSection, setActiveSection] = useState('')
+  const textOptions = [
+    'Junior Software Engineer | Computer Science Graduate',
+    'Software Engineer | Full-Stack Developer | ML Enthusiast | Game Developer',
+    'Software Developer working with modern tech stack',
+    'Full-Stack Developer crafting web experiences with modern technologies',
+    'Passionate about software engineering and problem solving',
+    'Bringing ideas to life through development',
+    'Learning and growing in software development',
+    'Transforming complex problems into elegant solutions with modern tech stack',
+    'Code Craftsman | Web Developer | AI Explorer | Interactive Software Engineer'
+  ];
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const fullText = textOptions[currentTextIndex];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTextIndex((prev) => (prev + 1) % textOptions.length);
+      setTypedText(''); // Reset typed text when changing phrases
+    }, 5000); // Change text every 5 seconds
+
+    return () => clearInterval(interval);
+  }, []);  const [activeSection, setActiveSection] = useState('')
+  const [hoveredImage, setHoveredImage] = useState<string | null>(null);
+  const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     document.documentElement.style.scrollBehavior = 'smooth';
@@ -112,7 +143,7 @@ export function PortfolioComponent() {
   useEffect(() => {
     const timer = setInterval(() => {
       setTypedText(fullText.substring(0, typedText.length + 1))
-    }, 100)
+    }, 30)
 
     return () => clearInterval(timer)
   }, [typedText])
@@ -144,7 +175,7 @@ export function PortfolioComponent() {
               <a href="#hero" className="text-white font-semibold text-lg">ÖD</a>
             </div>
             <div className="hidden md:flex items-center space-x-4">
-              {['About', 'Experience', 'Projects', 'Skills', 'Contact'].map((item) => (
+              {['About', 'Experience', 'Projects', 'Skills'].map((item) => (
                 <a
                   key={item}
                   href={`#${item.toLowerCase().replace(' ', '-')}`}
@@ -159,52 +190,50 @@ export function PortfolioComponent() {
                 <Linkedin className="h-5 w-5" />
               </a>
               <a href="https://github.com/omerdikyol" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#FF4500]">
-                <GitHub className="h-5 w-5" />
+                <Github className="h-5 w-5" />
               </a>
               <a href="mailto:omerdikyol02@gmail.com" className="text-white hover:text-[#FF4500]">
                 <Mail className="h-5 w-5" />
               </a>
             </div>
             <div className="md:hidden">
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="h-8 w-8 p-0">
-                    <span className="sr-only">Open menu</span>
-                    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  {['About', 'What I Do', 'Experience', 'Research', 'Projects', 'Skills', 'References', 'Contact'].map((item) => (
-                    <DropdownMenuItem key={item} asChild>
-                      <a
-                        href={`#${item.toLowerCase().replace(' ', '-')}`}
-                        className={`w-full px-2 py-1 text-sm ${
-                          activeSection === item.toLowerCase().replace(' ', '-') ? 'text-[#FF4500]' : 'text-gray-300'
-                        }`}
-                      >
-                        {item}
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" className="h-8 w-8 p-0 text-white">
+                      <span className="sr-only">Open menu</span>
+                      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                      </svg>
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="bg-[#0a0a0a]/95 backdrop-blur-sm border-[#333]">
+                    {['About', 'Experience', 'Projects', 'Skills'].map((item) => (
+                      <DropdownMenuItem key={item} asChild>
+                        <a
+                          href={`#${item.toLowerCase().replace(' ', '-')}`}
+                          className={`px-3 py-2 rounded-md text-sm font-medium ${
+                            activeSection === item.toLowerCase().replace(' ', '-')
+                              ? 'text-[#FF4500]'
+                              : 'text-gray-300 hover:text-white'
+                          }`}
+                        >
+                          {item}
+                        </a>
+                      </DropdownMenuItem>
+                    ))}
+                    <div className="flex items-center space-x-4 px-3 py-2">
+                      <a href="https://linkedin.com/in/omerdikyol" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#FF4500]">
+                        <Linkedin className="h-5 w-5" />
                       </a>
-                    </DropdownMenuItem>
-                  ))}
-                  <DropdownMenuItem>
-                    <a href="https://linkedin.com/in/omerdikyol" target="_blank" rel="noopener noreferrer" className="flex items-center w-full px-2 py-1 text-sm">
-                      <Linkedin className="h-4 w-4 mr-2" /> LinkedIn
-                    </a>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <a href="https://github.com/omerdikyol" target="_blank" rel="noopener noreferrer" className="flex items-center w-full px-2 py-1 text-sm">
-                      <GitHub className="h-4 w-4 mr-2" /> GitHub
-                    </a>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <a href="mailto:omerdikyol02@gmail.com" className="flex items-center w-full px-2 py-1 text-sm">
-                      <Mail className="h-4 w-4 mr-2" /> Email
-                    </a>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+                      <a href="https://github.com/omerdikyol" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#FF4500]">
+                        <Github className="h-5 w-5" />
+                      </a>
+                      <a href="mailto:omerdikyol02@gmail.com" className="text-white hover:text-[#FF4500]">
+                        <Mail className="h-5 w-5" />
+                      </a>
+                    </div>
+                  </DropdownMenuContent>
+                </DropdownMenu>
             </div>
           </div>
         </div>
@@ -217,10 +246,18 @@ export function PortfolioComponent() {
             <h2 className="text-xl sm:text-2xl md:text-3xl mb-8">Computer Engineer</h2>
             <p className="text-[#FF4500] font-mono mb-8">{typedText}</p>
             <Button 
-              className="bg-[#FF4500] hover:bg-[#FF4500]/90 text-white transition-all duration-300 ease-in-out transform hover:scale-105"
-              onClick={() => window.open('/path-to-your-cv.pdf', '_blank')}
+              className="group bg-[#FF4500] hover:bg-[#FF4500]/90 text-white px-6 py-3 
+              transition-all duration-300 ease-in-out transform hover:scale-105
+              relative overflow-hidden shadow-lg hover:shadow-[#FF4500]/50"
+              onClick={() => window.open('https://drive.google.com/file/d/107xTCh7n_nKTgfrI4sCX7_jEhwtogtPY/view?usp=view', '_blank')}
             >
-              Download CV
+                <span className="relative z-10 flex items-center gap-2">
+                <span className="group-hover:-translate-x-1 transition-transform duration-300"></span>
+                {"View My Resume"}
+                <ChevronRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#FF6B00] to-[#FF4500] 
+              opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </Button>
           </div>
         </section>
@@ -260,32 +297,32 @@ export function PortfolioComponent() {
               <div className="bg-[#1a1a1a] p-6 rounded-lg shadow-lg transition-all duration-300 hover:shadow-[#FF4500]/20 hover:-translate-y-1">
                 <Code className="w-12 h-12 mb-4 text-[#FF4500]" />
                 <h3 className="text-xl font-semibold mb-2">Software Development</h3>
-                <p>Full-stack development across multiple programming languages and frameworks.</p>
+                <p>Development across multiple programming languages and frameworks, with expertise in system integration and test automation.</p>
+              </div>
+              <div className="bg-[#1a1a1a] p-6 rounded-lg shadow-lg transition-all duration-300 hover:shadow-[#FF4500]/20 hover:-translate-y-1">
+                <Code className="w-12 h-12 mb-4 text-[#FF4500]" />
+                <h3 className="text-xl font-semibold mb-2">Full-Stack Web Development</h3>
+                <p>End-to-end web application development utilizing modern frameworks (React, Node.js, Laravel), RESTful APIs, and database management.</p>
               </div>
               <div className="bg-[#1a1a1a] p-6 rounded-lg shadow-lg transition-all duration-300 hover:shadow-[#FF4500]/20 hover:-translate-y-1">
                 <Brain className="w-12 h-12 mb-4 text-[#FF4500]" />
                 <h3 className="text-xl font-semibold mb-2">Research and Development</h3>
-                <p>Conducting research in software engineering and AI, developing predictive models.</p>
+                <p>Conducting innovative research in software engineering and AI, developing solutions for defense, automotive, and healthcare sectors.</p>
               </div>
               <div className="bg-[#1a1a1a] p-6 rounded-lg shadow-lg transition-all duration-300 hover:shadow-[#FF4500]/20 hover:-translate-y-1">
                 <Gamepad2 className="w-12 h-12 mb-4 text-[#FF4500]" />
-                <h3 className="text-xl font-semibold mb-2">Game Development</h3>
-                <p>Designing and developing interactive games using Unity Engine.</p>
+                <h3 className="text-xl font-semibold mb-2">Interactive Software & Game Development</h3>
+                <p>Creating engaging applications and games using Unity Engine and C#, focusing on therapeutic solutions and interactive experiences.</p>
               </div>
               <div className="bg-[#1a1a1a] p-6 rounded-lg shadow-lg transition-all duration-300 hover:shadow-[#FF4500]/20 hover:-translate-y-1">
                 <Smartphone className="w-12 h-12 mb-4 text-[#FF4500]" />
                 <h3 className="text-xl font-semibold mb-2">App Development</h3>
-                <p>Comprehensive application development across mobile, web, and desktop platforms.</p>
-              </div>
-              <div className="bg-[#1a1a1a] p-6 rounded-lg shadow-lg transition-all duration-300 hover:shadow-[#FF4500]/20 hover:-translate-y-1">
-                <Briefcase className="w-12 h-12 mb-4 text-[#FF4500]" />
-                <h3 className="text-xl font-semibold mb-2">IT Consultancy</h3>
-                <p>Providing strategic IT consultancy services to optimize operations.</p>
+                <p>Building comprehensive applications across mobile and desktop platforms, with emphasis on user experience and system optimization.</p>
               </div>
               <div className="bg-[#1a1a1a] p-6 rounded-lg shadow-lg transition-all duration-300 hover:shadow-[#FF4500]/20 hover:-translate-y-1">
                 <Database className="w-12 h-12 mb-4 text-[#FF4500]" />
                 <h3 className="text-xl font-semibold mb-2">AI/ML Development</h3>
-                <p>Development of machine learning models and AI-driven solutions for various domains.</p>
+                <p>Designing and implementing machine learning models and AI solutions, specializing in predictive analytics and data processing.</p>
               </div>
             </div>
           </div>
@@ -336,7 +373,16 @@ export function PortfolioComponent() {
               }
             ].map((job, index) => (
               <div key={index} className="mb-8 last:mb-0">
-                <h3 className="text-xl font-semibold">{job.company}</h3>
+                <h3 className="text-xl font-semibold">
+                  <a 
+                    href={COMPANY_LINKS[job.company]} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="hover:text-[#FF4500] transition-colors"
+                  >
+                    {job.company}
+                  </a>
+                </h3>
                 <p className="text-[#FF4500] mb-2">{job.role}</p>
                 <p className="text-sm text-gray-400 mb-2">{job.period}</p>
                 <ul className="list-disc list-inside">
@@ -373,7 +419,16 @@ export function PortfolioComponent() {
               }
             ].map((research, index) => (
               <div key={index} className="mb-8 last:mb-0">
-                <h3 className="text-xl font-semibold">{research.institution}</h3>
+                <h3 className="text-xl font-semibold">
+                  <a 
+                    href={COMPANY_LINKS["Yeditepe University"]} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="hover:text-[#FF4500] transition-colors"
+                  >
+                    {research.institution}
+                  </a>
+                </h3>
                 <p className="text-[#FF4500] mb-2">{research.role}</p>
                 <p className="text-sm text-gray-400 mb-2">{research.period}</p>
                 <ul className="list-disc list-inside">
@@ -412,16 +467,56 @@ export function PortfolioComponent() {
                     <div className="mt-4">
                       <p className="text-sm text-gray-400 mb-2">{project.tech}</p>
                       <p className="mb-4">{project.details}</p>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        {project.screenshots.map((screenshot, i) => (
-                          <img 
-                            key={i} 
-                            src={screenshot} 
-                            alt={`${project.title} screenshot ${i + 1}`} 
-                            className="w-full h-auto rounded-lg"
-                          />
-                        ))}
-                      </div>
+                      
+                      {project.screenshots && project.screenshots.length > 0 && (
+                        <div className={`
+                          grid gap-4
+                          ${project.screenshots.length === 2 ? 'grid-cols-1 sm:grid-cols-2' : ''}
+                          ${project.screenshots.length === 3 ? 'grid-cols-1 sm:grid-cols-3' : ''}
+                          ${project.screenshots.length === 1 ? 'grid-cols-1 max-w-md mx-auto' : ''}
+                        `}>
+                          {project.screenshots.map((screenshot, i) => (
+                            <div 
+                              key={i} 
+                              className="relative"
+                              onMouseEnter={() => {
+                                const timeout = setTimeout(() => {
+                                  setHoveredImage(screenshot);
+                                }, 300); // 300ms delay
+                                setHoverTimeout(timeout);
+                              }}
+                              onMouseLeave={() => {
+                                if (hoverTimeout) {
+                                  clearTimeout(hoverTimeout);
+                                }
+                                setHoveredImage(null);
+                              }}
+                            >
+                              <img 
+                                src={screenshot} 
+                                alt={`${project.title} screenshot ${i + 1}`} 
+                                className="w-full h-auto rounded-lg transition-all duration-300 hover:opacity-90"
+                              />
+                              {hoveredImage === screenshot && (
+                                <div 
+                                  className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-black/90 p-4 rounded-lg shadow-2xl
+                                    opacity-0 scale-95 transition-all duration-200 ease-in-out
+                                    animate-in fade-in scale-100 opacity-100"
+                                  onMouseEnter={() => setHoveredImage(screenshot)}
+                                  onMouseLeave={() => setHoveredImage(null)}
+                                >
+                                  <img
+                                    src={screenshot}
+                                    alt={`${project.title} screenshot ${i + 1} (enlarged)`}
+                                    className="max-h-[80vh] max-w-[80vw] object-contain"
+                                  />
+                                </div>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      )}
+
                       <div className="mt-4 flex justify-between items-center">
                         <a 
                           href={project.github} 
@@ -446,39 +541,53 @@ export function PortfolioComponent() {
         </section>
 
         <section id="skills" className="py-20 px-4 bg-[#121212]">
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-5xl mx-auto">
             <h2 className="text-2xl font-bold mb-8">Technical Skills</h2>
-            {[
-              {
-                category: 'Programming Languages',
-                skills: 'Python, Java, C, C++, C#, JavaScript, TypeScript, PHP'
-              },
-              {
-                category: 'Web Development',
-                skills: 'Node.js, Laravel, React Native, React.js, Vue.js, Nest.js, Next.js, Django, Flask, .NET Core'
-              },
-              {
-                category: 'Data Science & ML',
-                skills: 'NumPy, Pandas, TensorFlow, Keras, Scikit-learn'
-              },
-              {
-                category: 'Game Development',
-                skills: 'Unity Engine, C#, C++'
-              },
-              {
-                category: 'Databases',
-                skills: 'MySQL, MongoDB'
-              },
-              {
-                category: 'DevOps & Tools',
-                skills: 'Git, Jenkins, Docker, Jira, Selenium, BeautifulSoup'
-              }
-            ].map((category, index) => (
-              <div key={index} className="mb-6 last:mb-0 transition-all duration-300 ease-in-out hover:bg-[#1a1a1a] p-4 rounded-lg">
-                <h3 className="text-lg font-semibold mb-2">{category.category}</h3>
-                <p className="font-mono text-sm">{category.skills}</p>
-              </div>
-            ))}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {[
+          {
+            category: 'Programming Languages & Core Technologies',
+            skills: 'Python, JavaScript, TypeScript, C#, Java, C++, C, PHP'
+          },
+          {
+            category: 'Frontend Development',
+            skills: 'React.js, Vue.js, Next.js, HTML5, CSS3, Tailwind CSS, Bootstrap, Material-UI,'
+          },
+          {
+            category: 'Backend Development',
+            skills: 'Node.js, Django, Flask, Nest.js, Laravel, .NET Core, Express.js, REST APIs'
+          },
+          {
+            category: 'Mobile Development',
+            skills: 'React Native'
+          },
+          {
+            category: 'AI & Machine Learning',
+            skills: 'TensorFlow, Keras, NumPy, Pandas, Scikit-learn'
+          },
+          {
+            category: 'Databases & Storage',
+            skills: 'MongoDB, MySQL'
+          },
+          {
+            category: 'Development Tools & DevOps',
+            skills: 'Git, GitHub/GitLab/Bitbucket, Docker, Kubernetes, Jenkins, Linux/Unix, Bash, Jira, VS Code, Postman'
+          },
+          {
+            category: 'Testing & Automation',
+            skills: 'Selenium, BeautifulSoup'
+          },
+          {
+            category: 'Game & Interactive Development',
+            skills: 'Unity Engine, Unreal Engine, Game Design Patterns, Physics Engines,Blender'
+          }
+              ].map((category, index) => (
+          <div key={index} className="mb-6 last:mb-0 transition-all duration-300 ease-in-out hover:bg-[#1a1a1a] p-4 rounded-lg">
+            <h3 className="text-lg font-semibold mb-2">{category.category}</h3>
+            <p className="font-mono text-sm">{category.skills}</p>
+          </div>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -512,7 +621,7 @@ export function PortfolioComponent() {
           </div>
         </section>
 
-        <section id="contact" className="py-20 px-4 bg-[#121212]">
+        {/* <section id="contact" className="py-20 px-4 bg-[#121212]">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-2xl font-bold mb-8">Contact</h2>
             <form className="space-y-4 mb-8 bg-[#1a1a1a]/50 backdrop-blur-sm p-6 rounded-lg">
@@ -522,7 +631,7 @@ export function PortfolioComponent() {
               <Button className="bg-[#FF4500] hover:bg-[#FF4500]/90 text-white">Send Message</Button>
             </form>
           </div>
-        </section>
+        </section> */}
       </main>
 
       <footer className="bg-[#0a0a0a] py-8 px-4 text-center">
