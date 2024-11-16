@@ -44,7 +44,6 @@ const projects = [
     title: 'YHT Conductor',
     description: 'Automated ticket reservation process for high-speed trains',
     tech: 'Python, Selenium, BeautifulSoup',
-    github: '#',
     details: 'YHT Conductor is a Python-based automation tool that streamlines the ticket reservation process for high-speed trains. It uses web scraping techniques to efficiently book tickets, saving time for users.',
     screenshots: [
       '/screenshots/yht-conductor/yht-conductor1.png',
@@ -518,19 +517,23 @@ export function PortfolioComponent() {
                       )}
 
                       <div className="mt-4 flex justify-between items-center">
-                        <a 
-                          href={project.github} 
-                          target="_blank" 
-                          rel="noopener noreferrer" 
-                          className="text-[#FF4500] hover:underline inline-flex items-center"
-                        >
-                          GitHub <ChevronRight className="ml-1 h-4 w-4" />
-                        </a>
-                        <DialogTrigger asChild>
-                          <Button variant="outline">
-                            <X className="mr-2 h-4 w-4" /> Close
-                          </Button>
-                        </DialogTrigger>
+                        {project.github && (
+                          <a 
+                            href={project.github} 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="text-[#FF4500] hover:underline inline-flex items-center"
+                          >
+                            GitHub <ChevronRight className="ml-1 h-4 w-4" />
+                          </a>
+                        )}
+                        <div className="ml-auto">
+                          <DialogTrigger asChild>
+                            <Button variant="outline">
+                              <X className="mr-2 h-4 w-4" /> Close
+                            </Button>
+                          </DialogTrigger>
+                        </div>
                       </div>
                     </div>
                   </DialogContent>
