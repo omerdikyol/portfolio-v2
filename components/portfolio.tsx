@@ -35,8 +35,8 @@ const projects = [
     github: 'https://github.com/omerdikyol/gamified-hand-rehab',
     details: 'This project aims to improve hand rehabilitation through gamification. It uses an Arduino-equipped glove to track hand movements, which are then integrated into Unity-based games, making therapy more engaging and effective.',
     screenshots: [
-      '/screenshots/therapeutic-glove/therapeutic-glove1.png',
-      '/screenshots/therapeutic-glove/therapeutic-glove2.png',
+      '/portfolio-v2/screenshots/therapeutic-glove/therapeutic-glove1.png',
+      '/portfolio-v2/screenshots/therapeutic-glove/therapeutic-glove2.png',
     ]
   },
   {
@@ -45,7 +45,7 @@ const projects = [
     tech: 'Python, Selenium, BeautifulSoup',
     details: 'YHT Conductor is a Python-based automation tool that streamlines the ticket reservation process for high-speed trains. It uses web scraping techniques to efficiently book tickets, saving time for users.',
     screenshots: [
-      '/screenshots/yht-conductor/yht-conductor1.png',
+      '/portfolio-v2/screenshots/yht-conductor/yht-conductor1.png',
     ]
   },
   {
@@ -55,8 +55,8 @@ const projects = [
     github: 'https://github.com/omerdikyol/the-escapade-game',
     details: 'The Escapade is a 3D puzzle game where players solve intricate puzzles and complete various minigames to advance through levels in a mysterious world. Developed using Unity Engine, the game features a low-poly art style that creates a visually unique experience. C# was used for scripting gameplay mechanics, and Unity\'s animation tools brought the world to life.',
     screenshots: [
-      '/screenshots/escapade-game/the-escapade1.png',
-      '/screenshots/escapade-game/the-escapade2.png',
+      '/portfolio-v2/screenshots/escapade-game/the-escapade1.png',
+      '/portfolio-v2/screenshots/escapade-game/the-escapade2.png',
     ]
   },
   {
@@ -66,8 +66,8 @@ const projects = [
     github: 'https://github.com/omerdikyol/job_optimization',
     details: 'This application leverages advanced algorithms to optimize job scheduling in manufacturing environments. It uses PyQt for the user interface and implements both Simulated Annealing and Genetic Algorithms for efficient scheduling.',
     screenshots: [
-      '/screenshots/job-optimization/job-optimization1.png',
-      '/screenshots/job-optimization/job-optimization2.png',
+      '/portfolio-v2/screenshots/job-optimization/job-optimization1.png',
+      '/portfolio-v2/screenshots/job-optimization/job-optimization2.png',
     ]
   },
   {
@@ -86,9 +86,9 @@ const projects = [
     github: 'https://github.com/omerdikyol/obesity-visualizer',
     details: 'The Obesity Visualizer is a data visualization tool that provides insights into obesity trends across various demographics. It utilizes Pandas for data processing, and Matplotlib and Seaborn for creating detailed visualizations. Users can explore correlations between obesity and factors like age, income, and geographic location.',
     screenshots: [
-      '/screenshots/obesity-visualizer/obesity-visualizer1.png',
-      '/screenshots/obesity-visualizer/obesity-visualizer2.png',
-      '/screenshots/obesity-visualizer/obesity-visualizer3.png',
+      '/portfolio-v2/screenshots/obesity-visualizer/obesity-visualizer1.png',
+      '/portfolio-v2/screenshots/obesity-visualizer/obesity-visualizer2.png',
+      '/portfolio-v2/screenshots/obesity-visualizer/obesity-visualizer3.png',
     ]
   },
   {
@@ -98,8 +98,8 @@ const projects = [
     github: 'https://github.com/omerdikyol/2D-Arkanoid-Game',
     details: 'This project is a modern take on the classic Arkanoid-style game, developed using Unity Engine. The game features dynamic gameplay mechanics and challenges that require players to break bricks using a paddle and ball. Developed in C#, it includes power-ups, multiple levels, and increasing difficulty. Unity\'s physics engine was leveraged to create realistic ball and paddle interactions.',
     screenshots: [
-      '/screenshots/arkanoid/arkanoid1.png',
-      '/screenshots/arkanoid/arkanoid2.png',
+      '/portfolio-v2/screenshots/arkanoid/arkanoid1.png',
+      '/portfolio-v2/screenshots/arkanoid/arkanoid2.png',
     ]
   },
 ]
@@ -499,6 +499,7 @@ export function PortfolioComponent() {
                                 layout="responsive"
                                 width={700}
                                 height={475}
+                                unoptimized
                               />
                               {hoveredImage === screenshot && (
                                 <div 
@@ -515,6 +516,7 @@ export function PortfolioComponent() {
                                     layout="responsive"
                                     width={700}
                                     height={475}
+                                    unoptimized
                                   />
                                 </div>
                               )}
