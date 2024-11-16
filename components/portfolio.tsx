@@ -457,7 +457,7 @@ export function PortfolioComponent() {
                       </span>
                     </div>
                   </DialogTrigger>
-                  <DialogContent className="sm:max-w-[625px]">
+                  <DialogContent className="sm:max-w-[625px] max-h-[90vh] overflow-y-auto">
                     <DialogHeader>
                       <DialogTitle>{project.title}</DialogTitle>
                       <DialogDescription>
@@ -502,12 +502,9 @@ export function PortfolioComponent() {
                                 unoptimized
                               />
                               {hoveredImage === screenshot && (
-                                <div 
-                                  className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-black/90 p-4 rounded-lg shadow-2xl
-                                    opacity-0 scale-95 transition-all duration-200 ease-in-out
-                                    animate-in fade-in scale-100 opacity-100"
-                                  onMouseEnter={() => setHoveredImage(screenshot)}
-                                  onMouseLeave={() => setHoveredImage(null)}
+                                <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-black/90 p-4 rounded-lg shadow-2xl
+                                  opacity-0 scale-95 transition-all duration-200 ease-in-out
+                                  animate-in fade-in"
                                 >
                                   <Image
                                     src={screenshot}
