@@ -457,12 +457,12 @@ export function PortfolioComponent() {
                       </span>
                     </div>
                   </DialogTrigger>
-                  <DialogContent className="sm:max-w-[625px] max-h-[90vh] overflow-y-auto">
-                    <DialogHeader>
-                      <DialogTitle>{project.title}</DialogTitle>
-                      <DialogDescription>
-                        {project.description}
-                      </DialogDescription>
+                  <DialogContent className="sm:max-w-[625px] max-h-[90vh] overflow-y-auto bg-[#1a1a1a] text-white rounded-lg shadow-lg border-2 border-[#414141]">
+                    <DialogHeader className="flex justify-between items-center">
+                      <div>
+                        <DialogTitle className="text-2xl font-bold">{project.title}</DialogTitle>
+                        <DialogDescription className="text-gray-400">{project.description}</DialogDescription>
+                      </div>
                     </DialogHeader>
                     <div className="mt-4">
                       <p className="text-sm text-gray-400 mb-2">{project.tech}</p>
@@ -504,7 +504,7 @@ export function PortfolioComponent() {
                               {hoveredImage === screenshot && (
                                 <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-black/90 p-4 rounded-lg shadow-2xl
                                   opacity-0 scale-95 transition-all duration-200 ease-in-out
-                                  animate-in fade-in"
+                                  animate-in fade-in scale-100 opacity-100"
                                 >
                                   <Image
                                     src={screenshot}
@@ -535,7 +535,7 @@ export function PortfolioComponent() {
                         )}
                         <div className="ml-auto">
                           <DialogTrigger asChild>
-                            <Button variant="outline">
+                            <Button variant="outline" className="text-black border-black hover:bg-black hover:text-white transition-colors duration-300">
                               <X className="mr-2 h-4 w-4" /> Close
                             </Button>
                           </DialogTrigger>
