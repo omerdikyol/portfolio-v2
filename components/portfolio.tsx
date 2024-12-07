@@ -266,10 +266,7 @@ export function PortfolioComponent() {
           <div className="max-w-3xl mx-auto">
             <h2 className="text-2xl font-bold mb-8">About Me</h2>
             <p className="mb-4">
-              A results-driven software engineer with a deep passion for computer science, known for delivering innovative solutions that
-              drive efficiency and enhance system performance. My broad knowledge across various domains allows me to quickly adapt to
-              new challenges and make meaningful contributions in dynamic environments. Whether leading a team or working
-              independently, I am committed to achieving excellence in every project.
+              I'm Ömer. I like coding.
             </p>
             <p className="mb-4">
               <strong>Current Role:</strong> Gen-E Developer Graduate at Ericsson
